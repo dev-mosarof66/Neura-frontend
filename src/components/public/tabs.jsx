@@ -39,7 +39,7 @@ const TabItems = [
 const Tabs = () => {
   const [selectedItem, setSelectedItem] = useState(1)
   return (
-    <div className='w-[100%] mx-auto flex bg-base-100 py-2 xs:py-1 rounded-t-xl border-t border-t-secondary'>
+    <div className='w-[100%] mx-auto flex  py-2 xs:py-1 rounded-t-xl border-t bg-[#6a26ae] border-t-accent'>
       <ul className="flex w-[90%] xs:w-[90%] mx-auto justify-between text-white font-medium text-sm">
         {
           TabItems.map((item, index) => (
@@ -53,6 +53,7 @@ const Tabs = () => {
 }
 
 const Comp = ({ title, Icon, selected, id, onpress }) => {
+  
   return (
     <div onClick={() => onpress(id)} className={`flex flex-col items-center justify-center cursor-pointer hover:bg-accent p-3 xs:p-2 ${selected === id ? "bg-accent" : ""} rounded-sm gap-0.5 transition duration-300 tooltip tooltip-info`} data-tip={title} >
       <div className={`text-xl xs:text-xl ${selected === id ? "text-secondary" : "text-white"}`}>

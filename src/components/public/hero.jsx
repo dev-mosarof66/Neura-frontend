@@ -1,10 +1,9 @@
 import React from 'react';
 import { ArrowRight, BookOpen, Users, TrendingUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <section className="relative flex-1 flex items-center justify-center px-6 py-20">
+    <section className="relative flex-1 flex items-center justify-center px-6 pt-10">
       <div className="max-w-6xl mx-auto text-center">
         {/* Main Hero Content */}
         <div className="mb-16">
@@ -14,21 +13,23 @@ const Hero = () => {
               Illuminate Minds
             </span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Dive into a world of thought-provoking articles, expert insights, and inspiring stories. 
+            Dive into a world of thought-provoking articles, expert insights, and inspiring stories.
             Join our community of curious minds exploring ideas that matter.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button size="lg" className="bg-white text-purple-900 hover:bg-white/90 px-8 py-3 text-lg font-semibold group">
+            <button className="flex items-center bg-white text-purple-900 hover:bg-white/90 px-5 py-2 
+            sm:px-8 sm:py-3 sm:text-lg
+            text-base font-semibold group cursor-pointer transition duration-300 delay-75">
               Start Reading
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 px-8 py-3 text-lg">
+              <ArrowRight className="size-5 ml-2 group-hover:translate-x-1 group-active:translate-x-1 transition-transform" />
+            </button>
+            <button className="border border-white/30 text-white hover:bg-white hover:text-black font-semibold px-4 py-2  sm:px-8 sm:py-3 sm:text-lg text-base cursor-pointer transition duration-300 delay-75">
               Browse Categories
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -39,13 +40,13 @@ const Hero = () => {
             <h3 className="text-3xl font-bold text-white mb-2">1,200+</h3>
             <p className="text-white/70">Quality Articles</p>
           </div>
-          
+
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
             <Users className="w-8 h-8 text-pink-300 mb-4 mx-auto" />
             <h3 className="text-3xl font-bold text-white mb-2">25K+</h3>
             <p className="text-white/70">Active Readers</p>
           </div>
-          
+
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
             <TrendingUp className="w-8 h-8 text-orange-300 mb-4 mx-auto" />
             <h3 className="text-3xl font-bold text-white mb-2">98%</h3>
