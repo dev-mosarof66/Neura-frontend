@@ -4,6 +4,7 @@ import bg from '../../assets/bg.gif'
 import { ArrowBigUp, ArrowBigDown } from 'lucide-react';
 import '../../css/public/Landing.css'
 import PrviousComment from '../../components/public/Comment'
+import img from '../../assets/images/start-up.jpg'
 
 
 
@@ -38,7 +39,7 @@ const BlogDescription = () => {
 const BlogCard = ({ item }) => {
     return (
         <div className="w-full  mx-auto flex flex-col md:block md:mt-6 gap-3">
-            <img className="w-full md:w-96 lg:w-[500px] xl:w-[600px] bg-amber-50 object-cover float-left mr-8" src={bg} />
+            <img className="w-full md:w-96 lg:w-[500px] xl:w-[600px] bg-amber-50 object-cover float-left mr-8" src={img} />
             <h2 className="text-2xl xs:text-3xl sm:text-3xl xl:text-5xl font-bold text-white mb-2 lg:mb-6">{item.title}</h2>
             <p className="text-gray-300 text-sm xs:text-base xl:text-lg font-semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, assumenda quo! Labore magni iure obcaecati molestias consequuntur molestiae natus, numquam, ex voluptatem ducimus fuga similique officia, aspernatur hic cumque dolorem officiis! Nemo, quibusdam reiciendis earum reprehenderit veniam harum accusamus illo, doloremque nostrum culpa excepturi atque totam, dolores porro minima ut laboriosam qui quasi vel laborum ratione quae provident. Iusto molestiae pariatur ducimus nihil saepe cupiditate ipsum voluptatibus, culpa nulla vel. Possimus recusandae iste dolorem similique corporis rem enim ipsum neque sed aspernatur, culpa, nam, suscipit dolor tenetur hic illo! Quos dolor repellendus, ullam voluptatum consectetur voluptatibus veritatis facere, nulla libero, eveniet itaque! Ea quaerat laudantium quisquam, amet eveniet consequuntur quos. Sit quas quis architecto nesciunt officia quae impedit fugiat, animi eius error ipsum. Quidem, delectus ad voluptatibus molestiae quam consequatur saepe quod perferendis perspiciatis maxime omnis fugit labore debitis doloribus quasi asperiores corporis aliquam cumque nulla id? Fugit beatae a fugiat voluptate, quod, dolorum tempore repellendus rerum vitae illo neque! Dicta hic dolorem similique facilis? Laboriosam commodi ducimus nisi laborum ullam cupiditate similique, quo harum vero velit asperiores quibusdam, praesentium natus saepe? Exercitationem libero ratione eveniet eos accusantium error velit aut, cumque rerum illum soluta vitae sequi temporibus tempore explicabo. Eos ut consequuntur deleniti vero deserunt repudiandae sed possimus dicta iste est ipsa ipsam porro, architecto magni cum repellendus. Vitae inventore dolorum quas corporis? Harum laudantium sequi aperiam unde illo voluptatum ratione expedita, recusandae, magni deserunt nemo veritatis quos, consequuntur odio est cum libero distinctio provident quibusdam explicabo at non maiores reiciendis quaerat!</p>
             <p className="text-gray-300 text-sm xs:text-base xl:text-lg font-semibold">
@@ -51,39 +52,52 @@ const BlogCard = ({ item }) => {
 const Subscription = ({ like, handleLike, dislike, handleDislike }) => {
     return (
         <div className='flex flex-col gap-3 border border-gray-600 rounded-2xl w-full p-3'>
-            <div className='space-y-3'>
-                {/* likebox  */}
-
-                <div className='flex items-center gap-3 p-2  rounded-md '>
-                    {/* like  */}
-                    <div className='flex items-center gap-1 p-1 bg-green-600  rounded-md '>
-                        <div onClick={handleLike} className='p-1 bg-sky-500 rounded-md cursor-pointer hover:bg-sky-400 transition duration-300 delay-75'>
-                            <ArrowBigUp size={24} />
+            <div className='flex flex-col sm:flex-row gap-4 w-full'>
+                <div className='space-y-5  p-2 w-full '>
+                    {/* likebox  */}
+                    <div className='flex items-center gap-3 rounded-md '>
+                        {/* like  */}
+                        <div className='flex items-center gap-1 p-1 bg-green-600  rounded-md tooltip tooltip-accent' data-tip='Upvote'>
+                            <div onClick={handleLike} className='p-1 bg-sky-500 rounded-md cursor-pointer hover:bg-sky-400 transition duration-300 delay-75'>
+                                <ArrowBigUp size={24} />
+                            </div>
+                            <span className='font-semibold'>{like}k</span>
                         </div>
-                        <span className='font-semibold'>{like}k</span>
+                        {/* dislike  */}
+
+                        <div className='flex items-center gap-1 p-1 bg-green-600  rounded-md  tooltip tooltip-accent ' data-tip='Downvote'>
+                            <div onClick={handleDislike} className='p-1 bg-sky-500 rounded-md cursor-pointer hover:bg-sky-400 transition duration-300 delay-75'>
+                                <ArrowBigDown size={24} />
+                            </div>
+                            <span className='font-semibold'>{dislike}k</span>
+                        </div>
+
                     </div>
-                    {/* dislike  */}
 
-                    <div className='flex items-center gap-1 p-1 bg-green-600  rounded-md '>
-                        <div onClick={handleDislike} className='p-1 bg-sky-500 rounded-md cursor-pointer hover:bg-sky-400 transition duration-300 delay-75'>
-                            <ArrowBigDown size={24} />
+                    {/* channel  */}
+                    <div className='flex items-center gap-8'>
+                        <div className='flex items-center gap-1.5'>
+                            <div className='size-10 bg-amber-200 rounded-full'></div>
+                            <h1 className='font-bold'>Neura</h1>
                         </div>
-                        <span className='font-semibold'>{dislike}k</span>
+                        <button className='btn btn-sm btn-primary'>
+                            Follow
+                        </button>
                     </div>
 
                 </div>
+                <div className='w-full sm:hidden border border-green-700' />
 
-            </div>
-            <div className='w-full border border-green-700' />
+                {/* comment box  */}
 
-            {/* comment box  */}
-
-            <div className='w-full '>
-                <div className='w-full border border-gray-500 rounded-sm px-3 py-1 flex flex-col space-y-3 pb-4'>
-                    <textarea spellCheck={false} className='w-full outline-none resize-none' type='text' placeholder='Put your comment here..' />
-                    <button className='p-1 bg-white text-black border border-white hover:bg-transparent hover:text-white active:bg-transparent active:text-white font-bold cursor-pointer transition duration-300 text-sm'>Comment</button>
+                <div className='w-full sm:w-[100%] '>
+                    <div className='w-full rounded-sm px-3 py-1 grid grid-cols-1 gap-3 pb-4'>
+                        <textarea spellCheck={false} className='w-full outline-none h-24 xs:h-32 resize-none border border-green-500 rounded-sm p-2' type='text' placeholder='Put your comment here..' />
+                        <button className='w-full sm:w-32 p-1 bg-white text-black border border-white hover:bg-transparent hover:text-white active:bg-transparent active:text-white font-bold cursor-pointer transition duration-300 text-sm'>Comment</button>
+                    </div>
                 </div>
             </div>
+
 
             {/* previous comment  */}
             <PrviousComment />

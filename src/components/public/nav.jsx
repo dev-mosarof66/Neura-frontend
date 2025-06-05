@@ -24,7 +24,7 @@ const Navbar = () => {
         </ul>
 
         {/* Right: Join Button */}
-        <button onClick={() => navigate('/login')} className="bg-white px-2 py-1 text-black font-semibold border border-white hover:bg-transparent cursor-pointer transition duration-300 delay-75 hover:text-white md:text-lg">
+        <button onClick={() => navigate('/login')} className="bg-white px-2 py-1 text-black font-semibold border border-white hover:bg-transparent cursor-pointer transition duration-300 delay-75 hover:text-white md:text-base">
           Join Now
         </button>
       </div>

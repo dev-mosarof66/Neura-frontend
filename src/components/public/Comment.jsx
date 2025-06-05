@@ -6,7 +6,7 @@ import Comments from '../../../api/comment';
 const Comment = () => {
     return (
         <div className='space-y-2.5'>
-            <h1 className='text-amber-400 underline underline-offset-2'>Previous Comments</h1>
+            <h1 className='text-amber-400 text-xl sm:text-2xl underline underline-offset-2'>Previous Comments</h1>
             <div className='grid grid-cols-1 gap-4'>
                 {
                     Comments.map((item, index) => (
