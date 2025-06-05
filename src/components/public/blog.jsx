@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router';
-import img from '../../assets/images/start-up.jpg'
 
 const Blog = ({ data }) => {
     return (
@@ -17,7 +16,7 @@ const BlogCard = ({ image, title, description, item }) => {
     const navigate = useNavigate()
     return (
         <div onClick={() => navigate(`/blogs/${title}`, { state: item })} className="w-full rounded-md overflow-hidden shadow-sm  hover:shadow-md shadow-black/50 transition-shadow cursor-pointer duration-300">
-            <img className="w-full h-48 bg-amber-50 object-cover" src={img} />
+            <img className="w-full h-48 bg-amber-50 object-cover" src={image} />
             <div className="p-5">
                 <h2 className="text-xl font-semibold text-white mb-2">{title}</h2>
                 <p className="text-gray-400 text-sm">{description.length > 40 ? description.slice(0, 60) + '...' : description}</p>

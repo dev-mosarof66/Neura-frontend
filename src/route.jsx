@@ -12,12 +12,13 @@ const Error = lazy(() => import('./pages/public/Error'))
 const BlogDescription = lazy(() => import('./pages/public/BlogDescription'))
 const Saved = lazy(() => import('./pages/user/Saved'))
 const Loader = lazy(() => import('./components/public/loader'))
+const AdminLogin = lazy(() => import('../src/pages/admin/login'))
+const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
 
 const route = () => {
     return (
         <BrowserRouter>
             <Suspense fallback={<Loader />}>
-
                 <Routes>
                     <Route path='' element={<Layout />} >
                         <Route index element={<Landing />} />
@@ -31,6 +32,8 @@ const route = () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='/signup' element={<Signup />} />
                     <Route path='*' element={<Error />} />
+                    <Route path='/admin' element={<AdminDashboard />} />
+                    <Route path='/admin/login' element={<AdminLogin />} />
                 </Routes>
             </Suspense>
 
