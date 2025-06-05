@@ -19,11 +19,11 @@ const NewsLetter = () => {
           Get the latest blog updates, coding tips, and exclusive resources delivered weekly. No spam, ever.
         </p>
 
-        <form class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <form class=" w-full flex flex-col xs:flex-row items-center justify-center gap-4">
           <input
             type="email"
-            placeholder="Enter your email"
-            class="w-full sm:w-auto px-5 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800 dark:text-white bg-white dark:bg-gray-800"
+            placeholder="johndoe@gmail.com"
+            class="w-full xs:w-[300px] sm:w-[400px] text-xs xs:text-base px-5 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800 dark:text-white bg-white dark:bg-gray-800"
             required
           />
           <button

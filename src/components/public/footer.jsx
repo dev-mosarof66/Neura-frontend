@@ -36,7 +36,7 @@ const Footer = () => {
                 </nav>
             </footer>
             <footer className="footer sm:footer-horizontal footer-center text-base-content p-4">
-                <p className='flex items-center'>Copyright © {new Date().getFullYear()} - All right reserved by <span className='font-bold text-base text-secondary'>Neura</span></p>
+                <p className='flex flex-col xs:flex-row items-center'>Copyright © {new Date().getFullYear()} - All right reserved by <span className='font-bold text-base text-secondary'>Neura</span></p>
             </footer>
         </div>
     )

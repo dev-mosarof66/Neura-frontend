@@ -52,22 +52,22 @@ const About = () => {
           <div className="max-w-6xl">
             {/* Main Title */}
             <div className="mb-16">
-              <div className="avatar mb-8">
-                <div className="w-24 rounded-full bg-gradient-to-r from-primary to-secondary p-4">
+              <div className="avatar mb-6 xs:mb-8">
+                <div className="w-20 xs:w-24 rounded-full bg-gradient-to-r from-primary to-secondary p-4">
                   <Monitor className="w-full h-full text-white" />
                 </div>
               </div>
-              <h1 className="text-6xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
+              <h1 className="text-5xl xs:text-6xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
                 Neura
               </h1>
-              <p className="text-xl text-base-content/70 max-w-3xl mx-auto leading-relaxed mb-8">
+              <p className="text-base xs:text-xl max-w-3xl mx-auto leading-relaxed mb-8">
                 Your ultimate destination for all the blogs that goes with your every day life.
               </p>
             </div>
 
             {/* Central Hub Card */}
             <div className="flex justify-center mb-16">
-              <div className="card w-96 bg-base-100 shadow-xl">
+              <div className="card w-full xs:w-96 bg-base-100 shadow-xl">
                 <div className="card-body items-center text-center">
                   <div className="avatar">
                     <div className="w-16 rounded-full bg-gradient-to-r from-primary to-secondary">
@@ -81,7 +81,7 @@ const About = () => {
             </div>
 
             {/* Flow Chart - Topic Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
               {topics.map((topic, index) => (
                 <div key={index} className="relative">
                   {/* Connecting Lines */}
@@ -116,7 +116,7 @@ const About = () => {
             </div>
 
             {/* About Author Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
               <div className="card bg-base-100 shadow-lg">
                 <div className="card-body">
                   <div className="flex items-center mb-6">
@@ -137,8 +137,8 @@ const About = () => {
               </div>
 
               {/* Decorative Element */}
-              <div className="hidden md:flex justify-center">
-                <div className="radial-progress bg-primary/20 text-primary border-primary border-4" style={{"--value": "70", "--size": "16rem", "--thickness": "2px"}}>
+              <div className="w-full hidden lg:flex justify-center">
+                <div className="radial-progress bg-primary/20 text-primary border-primary border-4" style={{"--value": "70", "--size": "16rem", "--thickness": "2px",'color':"white"}}>
                   <div className="avatar">
                     <div className="w-32 rounded-full bg-gradient-to-r from-primary to-secondary">
                       <Monitor className="w-16 h-16 text-white m-8" />
