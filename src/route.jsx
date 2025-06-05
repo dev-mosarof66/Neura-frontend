@@ -8,6 +8,7 @@ const Blogs = lazy(() => import('./pages/public/Blogs'))
 const About = lazy(() => import('./pages/public/About'))
 const NewsLetter = lazy(() => import('./pages/public/NewsLetter'))
 const Explore = lazy(() => import('./pages/public/Explore'))
+const Error = lazy(() => import('./pages/public/Error'))
 const BlogDescription = lazy(() => import('./pages/public/BlogDescription'))
 const Saved = lazy(() => import('./pages/user/Saved'))
 const Loader = lazy(() => import('./components/public/loader'))
@@ -29,6 +30,7 @@ const route = () => {
                     </Route>
                     <Route path='/login' element={<Login />} />
                     <Route path='/signup' element={<Signup />} />
+                    <Route path='*' element={<Error />} />
                 </Routes>
             </Suspense>
 
