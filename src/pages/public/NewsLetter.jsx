@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const NewsLetter = () => {
 
   const handleSubscribe = (e) => {
-
-
-
+    e.preventDefault()
   }
+
+  useEffect(() => {
+    document.title = 'News Letter | Neura'
+  }, [])
   return (
     <section class="w-full flex items-center justify-center py-12 px-4">
       <div class="max-w-4xl mx-auto text-center">

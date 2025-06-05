@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Explore = () => {
+
+  useEffect(() => {
+    document.title = 'Explore | Neura'
+  }, [])
   return (
     <div>Explore</div>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { FaGoogle, FaGithub } from "react-icons/fa6";
@@ -29,6 +29,10 @@ const Login = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  useEffect(() => {
+    document.title = 'Login | Neura'
+  }, [])
 
   return (
     <div className="w-full h-screen gradient-mesh flex items-center justify-center">
@@ -129,7 +133,7 @@ const Login = () => {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+              <span className="px-2 bg-blue-600 text-white font-bold">Or continue with</span>
             </div>
           </div>
         </div>

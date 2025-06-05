@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Check } from 'lucide-react';
-import { FaGoogle, FaGithub  } from "react-icons/fa6";
+import { FaGoogle, FaGithub } from "react-icons/fa6";
 import { useNavigate } from 'react-router';
 import '../../css/public/Landing.css'
 
@@ -66,25 +66,29 @@ const Signup = () => {
     return 'Strong';
   };
 
+  useEffect(() => {
+    document.title = 'Signup | Neura'
+  }, [])
+
   return (
-    <div className="w-full gradient-mesh flex items-center justify-center hide">
-      <div className="rounded-2xl p-6 xs:p-6 xs:px-14 border border-gray-100  shadow-2xl shadow-accent">
+    <div className="w-full h-screen gradient-mesh flex items-center justify-center hide">
+      <div className="rounded-2xl px-4 xs:px-14 py-3 border border-gray-100  shadow-2xl shadow-accent">
         {/* Header */}
-        <div className="text-center mb-4">
-          <h2 className="text-3xl font-bold text-white mb-2">Create account</h2>
-          <p className="text-gray-400">Join us and start your journey</p>
+        <div className="text-center mb-2">
+          <h2 className="text-2xl xs:text-3xl font-bold text-white">Create account</h2>
+          <p className="text-gray-400 text-sm xs:text-base">Join us and start your journey</p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-2.5">
           {/* Name Fields */}
           <div className="w-full gap-4">
-            <div className="space-y-2">
-              <label htmlFor="fullName" className="text-sm font-medium text-gray-400">
+            <div>
+              <label htmlFor="fullName" className="text-xs xs:text-sm font-medium text-gray-400">
                 Full name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 w-5 h-5" />
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 size-5 xs:size-6" />
                 <input
                   id="fullName"
                   name="fullName"
@@ -92,7 +96,7 @@ const Signup = () => {
                   required
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder:text-blue-400"
+                  className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder:text-blue-400 text-xs xs:text-sm"
                   placeholder="John Doe"
                 />
               </div>
@@ -101,11 +105,11 @@ const Signup = () => {
 
           {/* Email Field */}
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-gray-400">
+            <label htmlFor="email" className="text-xs xs:text-sm font-medium text-gray-400">
               Email address
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 w-5 h-5" />
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 size-4 xs:size-6" />
               <input
                 id="email"
                 name="email"
@@ -113,7 +117,7 @@ const Signup = () => {
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200  placeholder:text-blue-400"
+                className="w-full pl-11 text-xs xs:text-sm pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200  placeholder:text-blue-400"
                 placeholder="Enter your email"
               />
             </div>
@@ -121,11 +125,11 @@ const Signup = () => {
 
           {/* Password Field */}
           <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium text-gray-400">
+            <label htmlFor="password" className="text-xs xs:text-sm font-medium text-gray-400">
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 w-5 h-5" />
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 size-4 xs:size-6" />
               <input
                 id="password"
                 name="password"
@@ -133,7 +137,7 @@ const Signup = () => {
                 required
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder:text-blue-400"
+                className="w-full pl-11 text-xs xs:text-sm pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder:text-blue-400"
                 placeholder="Create a password"
               />
               <button
@@ -141,7 +145,7 @@ const Signup = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? <EyeOff className="size-4 xs:size-6" /> : <Eye className="size-4 xs:size-6" />}
               </button>
             </div>
             {/* Password Strength Indicator */}
@@ -167,11 +171,11 @@ const Signup = () => {
 
           {/* Confirm Password Field */}
           <div className="space-y-2">
-            <label htmlFor="confirmPassword" className="text-sm font-medium text-gray-400">
+            <label htmlFor="confirmPassword" className="text-xs xs:text-sm font-medium text-gray-400">
               Confirm password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 w-5 h-5" />
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 size-4 xs:size-6" />
               <input
                 id="confirmPassword"
                 name="confirmPassword"
@@ -179,7 +183,7 @@ const Signup = () => {
                 required
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                className="w-full pl-11 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder:text-blue-400"
+                className="w-full pl-11 text-xs xs:text-sm pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder:text-blue-400"
                 placeholder="Confirm password"
               />
               <button
@@ -187,7 +191,7 @@ const Signup = () => {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
               >
-                {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showConfirmPassword ? <EyeOff className="size-4 xs:size-6" /> : <Eye className="size-4 xs:size-6" />}
               </button>
             </div>
             {formData.confirmPassword && formData.password !== formData.confirmPassword && (
@@ -202,7 +206,7 @@ const Signup = () => {
           </div>
 
           {/* Terms and Conditions */}
-          <div className="flex items-start">
+          <div className="flex items-center">
             <input
               id="accept-terms"
               name="accept-terms"
@@ -211,7 +215,7 @@ const Signup = () => {
               onChange={(e) => setAcceptTerms(e.target.checked)}
               className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mt-0.5"
             />
-            <label htmlFor="accept-terms" className="ml-2 block text-sm text-gray-300">
+            <label htmlFor="accept-terms" className="ml-2 block text-xs text-gray-300">
               I agree to the{' '}
               <button type="button" className="text-blue-600 hover:text-blue-500 transition-colors">
                 Terms of Service
@@ -233,8 +237,7 @@ const Signup = () => {
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
             ) : (
               <>
-                Create account
-                <ArrowRight className="w-4 h-4" />
+                Sign Up
               </>
             )}
           </button>
@@ -247,7 +250,7 @@ const Signup = () => {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or sign up with</span>
+              <span className="px-2 bg-blue-600 text-white font-bold">Or sign up with</span>
             </div>
           </div>
         </div>
@@ -265,9 +268,9 @@ const Signup = () => {
         </div>
 
         {/* Sign in link */}
-        <p className="mt-6 text-center text-sm text-gray-400">
+        <p className="mt-2 text-center text-sm text-gray-400">
           Already have an account?{' '}
-          <button onClick={()=>navigate("/login")} className="font-medium text-blue-600 hover:text-blue-500 transition-all cursor-pointer">
+          <button onClick={() => navigate("/login")} className="font-medium text-blue-600 hover:text-blue-500 transition-all cursor-pointer">
             Sign in
           </button>
         </p>
