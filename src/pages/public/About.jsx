@@ -106,7 +106,7 @@ const About = () => {
             <div className="card bg-base-100/60 backdrop-blur-sm shadow-lg mb-16">
               <div className="card-body">
                 <h2 className="card-title text-3xl justify-center mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Why "ScreenSphere"?
+                  Why "Neura"?
                 </h2>
                 <p className="text-lg text-base-content/80 text-center max-w-4xl mx-auto leading-relaxed">
                   Because we live in a world surrounded by screens — at home, at work, in our pockets. 
