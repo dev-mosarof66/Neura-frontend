@@ -13,7 +13,9 @@ const BlogDescription = lazy(() => import('./pages/public/BlogDescription'))
 const Saved = lazy(() => import('./pages/user/Saved'))
 const Loader = lazy(() => import('./components/public/loader'))
 const AdminLogin = lazy(() => import('../src/pages/admin/login'))
-const AdminDashboard  = lazy(() => import('../src/pages/admin/layout'))
+const AdminDashboardLayout = lazy(() => import('../src/pages/admin/layout'))
+const CreateBlog = lazy(() => import('../src/pages/admin/createBlog'))
+const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
 
 const route = () => {
     return (
@@ -32,7 +34,10 @@ const route = () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='/signup' element={<Signup />} />
                     <Route path='*' element={<Error />} />
-                    <Route path='/admin' element={<AdminDashboard />} />
+                    <Route path='/admin' element={<AdminDashboardLayout />} >
+                        <Route index element={<AdminDashboard />} />
+                        <Route path='/admin/create-blog' element={<CreateBlog />} />
+                    </Route>
                     <Route path='/admin/login' element={<AdminLogin />} />
                 </Routes>
             </Suspense>

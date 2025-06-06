@@ -10,8 +10,8 @@ const Profile = () => {
             <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button">
                     <div className='flex flex-row items-center gap-4 p-2 rounded-sm'>
-                        <div className='size-11 rounded-full hover:ring-2 hover:ring-secondary active:ring-accent transition duration-300 delay-100 cursor-pointer ring-2 ring-accent group'>
-                            <img className='size-11 rounded-full group-hover:opacity-85 transition-transform duration-300 delay-75' src={user} />
+                        <div className='size-10 rounded-full hover:ring-2 hover:ring-secondary active:ring-accent transition duration-300 delay-100 cursor-pointer ring-2 ring-accent group'>
+                            <img className='size-10 rounded-full group-hover:opacity-85 transition-transform duration-300 delay-75' src={user} />
                         </div>
                     </div>
 

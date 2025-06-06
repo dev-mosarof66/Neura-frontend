@@ -2,8 +2,11 @@ import React from 'react'
 import logo from '../../assets/logo.png'
 import { RiMenu2Line } from "react-icons/ri";
 import SearchComp from './Search';
+import { useNavigate } from 'react-router';
 
 const Drawer = ({input,setInput}) => {
+
+    const navigate = useNavigate()
     
     return (
         <div className='w-full'>
@@ -38,7 +41,7 @@ const Drawer = ({input,setInput}) => {
                                 <div className='w-full h-[1px] bg-gray-600' />
                                 <div className='flex flex-col gap-2'>
                                     <li className=' p-1  hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Dashboard</li>
-                                    <li className=' p-1  hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Create Blog</li>
+                                    <li onClick={()=> navigate('/admin/create-blog')} className=' p-1  hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Create Blog</li>
                                     <li className=' p-1 hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Payment History</li>
                                     <li className=' p-1  hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Manage User</li>
                                 </div>
