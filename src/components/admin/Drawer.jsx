@@ -1,8 +1,10 @@
 import React from 'react'
 import logo from '../../assets/logo.png'
 import { RiMenu2Line } from "react-icons/ri";
+import SearchComp from './Search';
 
-const Drawer = () => {
+const Drawer = ({input,setInput}) => {
+    
     return (
         <div className='w-full'>
             <div className="drawer w-full">
@@ -23,12 +25,15 @@ const Drawer = () => {
 
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu gradient-bg min-h-full w-52 xs:w-60 p-4">
+                    <ul className="menu gradient-bg min-h-full w-60 p-4">
                         <div className='w-full h-[92vh] flex flex-col justify-between p-1'>
                             <div className='space-y-4'>
                                 <div className='flex items-center gap-3'>
                                     <img className='size-8' src={logo} />
                                     <h1 className='text-xl font-bold text-amber-600'>Neura</h1>
+                                </div>
+                                <div>
+                                    <SearchComp input={input} setInput={setInput} />
                                 </div>
                                 <div className='w-full h-[1px] bg-gray-600' />
                                 <div className='flex flex-col gap-2'>

@@ -1,6 +1,4 @@
-import React from 'react'
 import logo from '../../assets/logo.png'
-import Profile from './Profile'
 
 const Sidebar = () => {
     return (
@@ -18,10 +16,6 @@ const Sidebar = () => {
                     <li className=' p-1 hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Payment History</li>
                     <li className=' p-1  hover:bg-blue-400 active:bg-blue-400 cursor-pointer duration-300 font-semibold text-base'>Manage User</li>
                 </div>
-            </div>
-
-            <div>
-                <Profile />
             </div>
         </div>
     )

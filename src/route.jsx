@@ -13,7 +13,7 @@ const BlogDescription = lazy(() => import('./pages/public/BlogDescription'))
 const Saved = lazy(() => import('./pages/user/Saved'))
 const Loader = lazy(() => import('./components/public/loader'))
 const AdminLogin = lazy(() => import('../src/pages/admin/login'))
-const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
+const AdminDashboard  = lazy(() => import('../src/pages/admin/layout'))
 
 const route = () => {
     return (
