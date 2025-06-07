@@ -1,1 +1,0 @@
-import{j as e}from"./index-BsOdG_Im.js";const n=()=>e.jsx("div",{className:"w-full h-screen flex items-center justify-center gradient-mesh",children:e.jsx("span",{className:"loading loading-infinity loading-xl"})});export{n as default};
