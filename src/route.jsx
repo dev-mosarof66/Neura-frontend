@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react'
+import { Toaster } from 'react-hot-toast'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Provider from './context/Provider'
 const Layout = lazy(() => import('./pages/public/Layout'))
@@ -21,6 +22,7 @@ const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
 const route = () => {
     return (
         <Provider>
+            <Toaster />
             <BrowserRouter>
                 <Suspense fallback={<Loader />}>
                     <Routes>
@@ -38,9 +40,8 @@ const route = () => {
                         <Route path='*' element={<Error />} />
                         <Route path='/admin' element={<AdminDashboardLayout />} >
                             <Route index element={<AdminDashboard />} />
-                            <Route path='/admin/create-blog' element={<CreateBlog />} />
                         </Route>
-                        <Route path='/admin/create-blog/full-screen' element={<CreateBlog />} />
+                        <Route path='/admin/create-blog' element={<CreateBlog />} />
                         <Route path='/admin/login' element={<AdminLogin />} />
                     </Routes>
                 </Suspense>

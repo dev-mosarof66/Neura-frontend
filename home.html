@@ -2,66 +2,65 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <meta charset="UTF-8" />
+    <title>Simple Text Editor</title>
     <style>
-        body {
-            width: 90%;
-            max-width: 900px;
-            margin: 0 auto;
-            font:
-                0.9em/1.2 Arial,
-                Helvetica,
-                sans-serif;
+        .toolbar {
+            margin-bottom: 10px;
         }
 
-        .box {
-            float: left;
-            width: 150px;
-            height: 100px;
-            border-radius: 5px;
-            background-color: rgb(207 232 220);
-            padding: 1em;
-            margin: 15px;
+        .toolbar button,
+        .toolbar select,
+        .toolbar input[type="color"] {
+            margin-right: 5px;
+            padding: 5px;
+        }
+
+        #editor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 200px;
+            font-family: sans-serif;
         }
     </style>
 </head>
 
-
 <body>
-    <div>
-        <h1>Float example</h1>
+    <div class="toolbar">
+        <button onclick="format('bold')">Bold</button>
+        <button onclick="format('italic')">Italic</button>
+        <button onclick="format('underline')">Underline</button>
 
-        <div class="box">Float</div>
+        <select onchange="changeFontSize(this.value)">
+            <option value="">Font Size</option>
+            <option value="1">Very Small</option>
+            <option value="3">Normal</option>
+            <option value="5">Large</option>
+            <option value="7">Very Large</option>
+        </select>
 
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus aliquam
-            dolor, eu lacinia lorem placerat vulputate. Duis felis orci, pulvinar id metus
-            ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at ultricies tellus
-            laoreet sit amet.
-        </p>
+        <input type="color" onchange="changeColor(this.value)" />
+    </div>
 
-        <p>
-            Sed auctor cursus massa at porta. Integer ligula ipsum, tristique sit amet
-            orci vel, viverra egestas ligula. Curabitur vehicula tellus neque, ac ornare
-            ex malesuada et. In vitae convallis lacus. Aliquam erat volutpat. Suspendisse
-            ac imperdiet turpis. Aenean finibus sollicitudin eros pharetra congue. Duis
-            ornare egestas augue ut luctus. Proin blandit quam nec lacus varius commodo et
-            a urna. Ut id ornare felis, eget fermentum sapien.
-        </p>
+    <div id="editor" contenteditable="true">
+        Type your text here...
+    </div>
 
-        <p>
-            Nam vulputate diam nec tempor bibendum. Donec luctus augue eget malesuada
-            ultrices. Phasellus turpis est, posuere sit amet dapibus ut, facilisis sed
-            est. Nam id risus quis ante semper consectetur eget aliquam lorem. Vivamus
-            tristique elit dolor, sed pretium metus suscipit vel. Mauris ultricies lectus
-            sed lobortis finibus. Vivamus eu urna eget velit cursus viverra quis
-            vestibulum sem. Aliquam tincidunt eget purus in interdum. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-        </p>
+    <script>
+        function format(command) {
+            document.execCommand(command, false, null);
+        }
 
+        function changeFontSize(size) {
+            if (size) {
+                document.execCommand("fontSize", false, size);
+            }
+        }
+
+        function changeColor(color) {
+            document.execCommand("foreColor", false, color);
+        }
+    </script>
 </body>
 
 </html>

@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Context from './context'
 
 const Provider = ({ children }) => {
 
     const [blog, setBlog] = useState({
-        fileName:"Untitled",
         title: "",
-        content: ""
+        fileName: "Untitled"
     })
+
+    const editorRef = useRef(null);
+
     return (
-        <Context.Provider value={{blog,setBlog}}>
+        <Context.Provider value={{ editorRef, blog, setBlog }}>
             {
                 children
             }

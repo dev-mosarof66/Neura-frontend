@@ -28,7 +28,7 @@ const DashboardLayout = () => {
                         <Profile />
                     </div>
                     <div className='w-full hidden sm:block h-[1px] bg-secondary/40' />
-                    <div className='w-[100%] sm:w-[100%] mx-auto h-[88vh] py-2'>
+                    <div className='w-[100%] sm:w-[100%] mx-auto h-[89vh] overflow-y-auto py-2'>
                         <Outlet />
                     </div>
                 </section>

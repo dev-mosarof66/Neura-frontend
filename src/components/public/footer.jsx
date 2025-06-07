@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaYoutube } from 'react-icons/fa6'
 
 const Footer = () => {
     return (
-        <div className='mt-5 w-full flex flex-col items-center justify-center pb-20 sm:pb-5'>
+        <div className='mt-5 w-full xs:w-[90%] mx-auto flex flex-col items-center justify-center pb-20 sm:pb-5'>
             <div className='w-full h-[1px] bg-gray-400'></div>
 
             <footer className="footer grid grid-cols-2 sm:footer-horizontal text-base-content p-10">
