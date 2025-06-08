@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiCommand } from "react-icons/bi";
 import '../../css/public/Landing.css'
 import { Link, useNavigate } from 'react-router';
+import Context from '../../context/context';
+import UserProfile from '../../components/user/Profile'
 
 
 
 const Navbar = () => {
   const navigate = useNavigate()
+  const { User } = useContext(Context)
+  console.log(User);
+  
   return (
     <nav className="backdrop-blur-md shadow-sm fixed top-0 left-0 z-50 w-full py-2">
       <div className="max-w-7xl w-[96%] sm:w-[90%] xl:w-[85%] mx-auto px-4 py-3 flex items-center justify-between">
@@ -24,9 +29,18 @@ const Navbar = () => {
         </ul>
 
         {/* Right: Join Button */}
-        <button onClick={() => navigate('/login')} className="bg-white px-2 py-1 text-black font-semibold border border-white hover:bg-transparent cursor-pointer transition duration-300 delay-75 hover:text-white md:text-base">
-          Join Now
-        </button>
+        <div>
+          {
+            User ?
+              <div>
+                <UserProfile />
+              </div>
+              :
+              <button onClick={() => navigate('/login')} className="bg-white px-2 py-1 text-black font-semibold border border-white hover:bg-transparent cursor-pointer transition duration-300 delay-75 hover:text-white md:text-base">
+                Join Now
+              </button>
+          }
+        </div>
       </div>
     </nav>
   );

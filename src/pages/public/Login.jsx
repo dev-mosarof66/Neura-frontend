@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { FaGoogle, FaGithub } from "react-icons/fa6";
+import axiosInstance from '../../utils/axios';
+import Context from '../../context/context';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -11,6 +14,7 @@ const Login = () => {
     password: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const { User, setUser } = useContext(Context)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +22,16 @@ const Login = () => {
 
     // Simulate login process
     await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log('Login attempt:', formData);
+    await axiosInstance.post("/user/login").then((res) => {
+      console.log(res.data);
+      setUser(res.data)
+      toast.success('Login successful')
 
+    }).catch((error) => {
+      console.log(error);
+    })
+
+    await new Promise(resolve => setTimeout(resolve, 1500));
     setIsLoading(false);
   };
 

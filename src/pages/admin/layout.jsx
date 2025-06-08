@@ -1,13 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Drawer from '../../components/admin/Drawer'
 import Profile from '../../components/admin/Profile'
 import Sidebar from '../../components/admin/Sidebar'
 import Search from '../../components/admin/Search'
 import { Outlet } from 'react-router'
+import axiosInstance from '../../utils/axios'
 
 
 const DashboardLayout = () => {
     const [input, setInput] = useState('')
+
+    useEffect(() => {
+        axiosInstance.get('/admin/get-profile').then((res) => {
+            console.log(res.data);
+
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }, [])
+
     return (
         <div className='w-full h-screen gradient-overlay flex flex-col gap-2 relative'>
             <section className='md:hidden w-full mx-auto flex items-center justify-between mt-4 '>

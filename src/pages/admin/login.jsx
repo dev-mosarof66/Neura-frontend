@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Eye, EyeOff, Lock, User } from 'lucide-react';
 import { useNavigate } from 'react-router';
+import axiosInstance from '../../utils/axios'
+import toast from 'react-hot-toast';
+import Context from '../../context/context';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -10,16 +13,29 @@ const Login = () => {
         password: ''
     });
     const [isLoading, setIsLoading] = useState(false);
+    const { setAdmin } = useContext(Context)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
 
         // Simulate login process
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log('Login attempt:', formData);
-        
-        setIsLoading(false);
+        await axiosInstance.post('/admin/login', {
+            username: formData.username,
+            password: formData.password
+        }).then((res) => {
+            console.log(res.data);
+            setAdmin(res.data.admin)
+            toast.success('Login successful.')
+
+        }).catch((error) => {
+            console.log(`Login error : ${error}`);
+            toast.success('Login failed.')
+
+        }).finally(() => {
+            setIsLoading(false);
+        })
+
         navigate("/admin")
     };
 

@@ -7,11 +7,14 @@ const Provider = ({ children }) => {
         title: "",
         fileName: "Untitled"
     })
+    const [admin, setAdmin] = useState(null)
+    const [User, SetUser] = useState(null)
 
     const editorRef = useRef(null);
 
     return (
-        <Context.Provider value={{ editorRef, blog, setBlog }}>
+        <Context.Provider
+            value={{ editorRef, blog, admin, setAdmin, setBlog, User, SetUser }}>
             {
                 children
             }

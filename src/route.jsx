@@ -1,7 +1,8 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useContext, useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { BrowserRouter, Routes, Route } from 'react-router'
-import Provider from './context/Provider'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
+import Context from './context/context'
+import axiosInstance from './utils/axios'
 const Layout = lazy(() => import('./pages/public/Layout'))
 const Landing = lazy(() => import('./pages/public/Landing'))
 const Signup = lazy(() => import('./pages/public/Signup'))
@@ -12,22 +13,58 @@ const NewsLetter = lazy(() => import('./pages/public/NewsLetter'))
 const Explore = lazy(() => import('./pages/public/Explore'))
 const Error = lazy(() => import('./pages/public/Error'))
 const BlogDescription = lazy(() => import('./pages/public/BlogDescription'))
-const Saved = lazy(() => import('./pages/user/Saved'))
 const Loader = lazy(() => import('./components/public/loader'))
+
+
+//user
+const Saved = lazy(() => import('./pages/user/Saved'))
+const Home = lazy(() => import('./pages/user/Home'))
+
+//admin
 const AdminLogin = lazy(() => import('../src/pages/admin/login'))
 const AdminDashboardLayout = lazy(() => import('../src/pages/admin/layout'))
 const CreateBlog = lazy(() => import('../src/pages/admin/createBlog'))
 const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
 
-const route = () => {
+const Router = () => {
+    const { admin, setAdmin, User, SetUser } = useContext(Context)
+
+
+    const fetchUserData = async () => {
+        await axiosInstance.get('/user/get-profile').then((res) => {
+            console.log(res.data);
+            
+            SetUser(res.data.user)
+        }).catch((error) => {
+            console.log(`error in user data`);
+
+            console.log(error.response.data);
+        })
+    }
+    const fetchAdminData = async () => {
+        await axiosInstance.get('/admin/get-profile').then((res) => {
+            setAdmin(res.data)
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
+
+
+    useEffect(() => {
+        fetchAdminData();
+        fetchUserData()
+    }, [])
+
+
+
     return (
-        <Provider>
+        <>
             <Toaster />
             <BrowserRouter>
                 <Suspense fallback={<Loader />}>
                     <Routes>
                         <Route path='' element={<Layout />} >
-                            <Route index element={<Landing />} />
+                            <Route index element={User === null ? <Landing /> : <Home />} />
                             <Route path='/blogs' element={<Blogs />} />
                             <Route path='/news-letter' element={<NewsLetter />} />
                             <Route path='/about' element={<About />} />
@@ -35,20 +72,20 @@ const route = () => {
                             <Route path='/saved' element={<Saved />} />
                             <Route path='/blogs/:id' element={<BlogDescription />} />
                         </Route>
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/signup' element={<Signup />} />
+                        <Route path='/login' element={User === null && <Login />} />
+                        <Route path='/signup' element={User === null && <Signup />} />
                         <Route path='*' element={<Error />} />
-                        <Route path='/admin' element={<AdminDashboardLayout />} >
+                        <Route path='/admin' element={admin === null ? <Navigate to={'/admin/login'} /> : <AdminDashboardLayout />} >
                             <Route index element={<AdminDashboard />} />
                         </Route>
                         <Route path='/admin/create-blog' element={<CreateBlog />} />
-                        <Route path='/admin/login' element={<AdminLogin />} />
+                        <Route path='/admin/login' element={admin === null ? <AdminLogin /> : <Navigate to='/admin' />} />
                     </Routes>
                 </Suspense>
 
             </BrowserRouter>
-        </Provider>
+        </>
     )
 }
 
-export default route
+export default Router

@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Check } from 'lucide-react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { FaGoogle, FaGithub } from "react-icons/fa6";
+import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import '../../css/public/Landing.css'
+import toast from 'react-hot-toast';
+import axiosInstance from '../../utils/axios';
+import Context from '../../context/context';
 
 
 const Signup = () => {
@@ -18,10 +22,14 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
 
+  //from context
+
+  const { User, setUser } = useContext(Context)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      toast.error('password and confirm password must be same');
       return;
     }
 
@@ -29,9 +37,20 @@ const Signup = () => {
 
     // Simulate signup process
     await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log('Signup attempt:', formData);
 
-    setIsLoading(false);
+    await axiosInstance.post("/user/signup").then((res) => {
+      console.log(res.data)
+      setUser(res.data)
+      toast.success("User created successfully.")
+    }).catch((error) => {
+      console.log(error)
+    }).finally(() => {
+      setIsLoading(false);
+    })
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    toast.success("redirecting to Login page..")
+
+
   };
 
   const handleInputChange = (e) => {
@@ -88,7 +107,7 @@ const Signup = () => {
                 Full name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 size-5 xs:size-6" />
+                <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 size-5 xs:size-6" />
                 <input
                   id="fullName"
                   name="fullName"
