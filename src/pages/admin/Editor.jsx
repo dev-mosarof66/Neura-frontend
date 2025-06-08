@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaBold, FaUnderline, FaItalic, FaSave, FaExpand } from 'react-icons/fa';
+import { FaBold, FaUnderline, FaItalic, FaSave } from 'react-icons/fa';
 import '../../css/public/Landing.css'
 import toast from 'react-hot-toast';
 import Loader from '../../components/public/loader';
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router';
 const Editor = ({ editorRef }) => {
   const navigate = useNavigate()
   const [fileName, setFileName] = useState('Untitled');
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false)
 
@@ -21,9 +20,6 @@ const Editor = ({ editorRef }) => {
     toast.success("data stored in database.")
   };
 
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
 
   const formatText = (command, value = null) => {
     document.execCommand(command, false, value);
@@ -75,12 +71,6 @@ const Editor = ({ editorRef }) => {
               onChange={(e) => setFileName(e.target.value)}
             />
           </div>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button className="tooltip tooltip-left" data-tip={isFullscreen ? "Normal Screen" : "Full Screen"} onClick={toggleFullscreen}>
-            <FaExpand className="text-xl text-gray-700 hover:text-blue-600 cursor-pointer" />
-          </button>
         </div>
       </header>
 

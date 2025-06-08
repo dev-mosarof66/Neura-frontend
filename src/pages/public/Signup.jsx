@@ -117,7 +117,7 @@ const Signup = () => {
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full pl-11 text-xs xs:text-sm pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200  placeholder:text-blue-400"
+                className="w-full sm:w-[320px] pl-11 text-xs xs:text-sm pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200  placeholder:text-blue-400"
                 placeholder="Enter your email"
               />
             </div>
