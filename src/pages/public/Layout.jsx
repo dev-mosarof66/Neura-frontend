@@ -9,7 +9,7 @@ import Context from '../../context/context';
 import { LogoutPopup } from '../../components/user/popup';
 const Layout = () => {
 
-    const { logoutPopup, setLogoutPopup } = useContext(Context)
+    const { logoutPopup } = useContext(Context)
     useEffect(() => {
         document.title = `Neura`
     }, [])

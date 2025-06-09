@@ -12,6 +12,7 @@ const About = lazy(() => import('./pages/public/About'))
 const NewsLetter = lazy(() => import('./pages/public/NewsLetter'))
 const Explore = lazy(() => import('./pages/public/Explore'))
 const Error = lazy(() => import('./pages/public/Error'))
+const CategoryBlog = lazy(() => import('./pages/user/CategoryBlog'))
 const BlogDescription = lazy(() => import('./pages/public/BlogDescription'))
 const Loader = lazy(() => import('./components/public/loader'))
 
@@ -54,6 +55,7 @@ const InnerRouter = () => {
         }
 
         fetchUserData();
+        window.scrollTo(0, 0)
     }, [location]);
 
     return (
@@ -62,11 +64,12 @@ const InnerRouter = () => {
                 <Route path='' element={<Layout />} >
                     <Route index element={User === null ? <Landing /> : <Home />} />
                     <Route path='/blogs' element={<Blogs />} />
+                    <Route path='/blogs/:id' element={<CategoryBlog />} />
                     <Route path='/news-letter' element={<NewsLetter />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/explore' element={<Explore />} />
                     <Route path='/saved' element={<Saved />} />
-                    <Route path='/blogs/:id' element={<BlogDescription />} />
+                    <Route path='/blogs/des/:id' element={<BlogDescription />} />
                 </Route>
                 <Route path='/login' element={User === null ? <Login /> : <Navigate to='/' />} />
                 <Route path='/signup' element={User === null ? <Signup /> : <Navigate to='/' />} />

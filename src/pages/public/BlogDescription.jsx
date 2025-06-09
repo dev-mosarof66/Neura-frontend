@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
-import bg from '../../assets/bg.gif'
 import { ArrowBigUp, ArrowBigDown } from 'lucide-react';
 import '../../css/public/Landing.css'
 import PrviousComment from '../../components/public/Comment'
-import img from '../../assets/images/start-up.jpg'
 
 
 
@@ -25,10 +23,11 @@ const BlogDescription = () => {
 
     useEffect(() => {
         document.title = `${item.title}`
-    }, [item])
+        window.scrollTo(0, 0)
+    })
 
     return (
-        <div className='flex flex-col gap-8'>
+        <div onScroll={() => console.log('scrolling')} className='flex flex-col gap-8'>
             <BlogCard item={item} />
             <div className='flex flex-col gap-3 border border-green-600'>  </div>
             <Subscription like={like} handleLike={handleLike} dislike={dislike} handleDislike={handleDislike} />
@@ -39,7 +38,7 @@ const BlogDescription = () => {
 const BlogCard = ({ item }) => {
     return (
         <div className="w-full  mx-auto flex flex-col md:block md:mt-6 gap-3">
-            <img className="w-full md:w-96 lg:w-[500px] xl:w-[600px] bg-amber-50 object-cover float-left mr-8" src={img} />
+            <img className="w-full md:w-96 lg:w-[500px] xl:w-[600px] bg-amber-50 object-cover float-left mr-8" src={item?.image} />
             <h2 className="text-2xl xs:text-3xl sm:text-3xl xl:text-5xl font-bold text-white mb-2 lg:mb-6">{item.title}</h2>
             <p className="text-gray-300 text-sm xs:text-base xl:text-lg font-semibold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, assumenda quo! Labore magni iure obcaecati molestias consequuntur molestiae natus, numquam, ex voluptatem ducimus fuga similique officia, aspernatur hic cumque dolorem officiis! Nemo, quibusdam reiciendis earum reprehenderit veniam harum accusamus illo, doloremque nostrum culpa excepturi atque totam, dolores porro minima ut laboriosam qui quasi vel laborum ratione quae provident. Iusto molestiae pariatur ducimus nihil saepe cupiditate ipsum voluptatibus, culpa nulla vel. Possimus recusandae iste dolorem similique corporis rem enim ipsum neque sed aspernatur, culpa, nam, suscipit dolor tenetur hic illo! Quos dolor repellendus, ullam voluptatum consectetur voluptatibus veritatis facere, nulla libero, eveniet itaque! Ea quaerat laudantium quisquam, amet eveniet consequuntur quos. Sit quas quis architecto nesciunt officia quae impedit fugiat, animi eius error ipsum. Quidem, delectus ad voluptatibus molestiae quam consequatur saepe quod perferendis perspiciatis maxime omnis fugit labore debitis doloribus quasi asperiores corporis aliquam cumque nulla id? Fugit beatae a fugiat voluptate, quod, dolorum tempore repellendus rerum vitae illo neque! Dicta hic dolorem similique facilis? Laboriosam commodi ducimus nisi laborum ullam cupiditate similique, quo harum vero velit asperiores quibusdam, praesentium natus saepe? Exercitationem libero ratione eveniet eos accusantium error velit aut, cumque rerum illum soluta vitae sequi temporibus tempore explicabo. Eos ut consequuntur deleniti vero deserunt repudiandae sed possimus dicta iste est ipsa ipsam porro, architecto magni cum repellendus. Vitae inventore dolorum quas corporis? Harum laudantium sequi aperiam unde illo voluptatum ratione expedita, recusandae, magni deserunt nemo veritatis quos, consequuntur odio est cum libero distinctio provident quibusdam explicabo at non maiores reiciendis quaerat!</p>
             <p className="text-gray-300 text-sm xs:text-base xl:text-lg font-semibold">

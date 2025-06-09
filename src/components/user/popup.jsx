@@ -19,7 +19,7 @@ export const LogoutPopup = () => {
             handleLogin()
             setLogoutPopup(false)
         }, 3000);
-    }, [])
+    })
     return (
         <div className="absolute top-0 w-full h-screen flex items-center justify-center bg-black z-50">
 
