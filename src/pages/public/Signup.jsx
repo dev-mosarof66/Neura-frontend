@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Check } from 'lucide-react';
 import { FaGoogle, FaGithub } from "react-icons/fa6";
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
@@ -24,7 +24,7 @@ const Signup = () => {
 
   //from context
 
-  const { User, setUser } = useContext(Context)
+  const { User, SetUser } = useContext(Context)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,18 +38,23 @@ const Signup = () => {
     // Simulate signup process
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    await axiosInstance.post("/user/signup").then((res) => {
+    await axiosInstance.post("/user/signup", {
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      confirmPassword: formData.confirmPassword
+    }).then((res) => {
       console.log(res.data)
-      setUser(res.data)
       toast.success("User created successfully.")
+      toast.success("redirecting to Login page..")
+      navigate("/login")
     }).catch((error) => {
       console.log(error)
+      toast.error("User already exists.")
     }).finally(() => {
       setIsLoading(false);
-    })
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    toast.success("redirecting to Login page..")
 
+    })
 
   };
 
@@ -88,6 +93,12 @@ const Signup = () => {
   useEffect(() => {
     document.title = 'Signup | Neura'
   }, [])
+
+  useEffect(() => {
+    if (User) {
+      navigate('/')
+    }
+  }, [User, navigate])
 
   return (
     <div className="w-full h-screen gradient-mesh flex items-center justify-center hide">

@@ -4,6 +4,7 @@ import '../../css/public/Landing.css'
 import { Link, useNavigate } from 'react-router';
 import Context from '../../context/context';
 import UserProfile from '../../components/user/Profile'
+import Categories from '../user/categories';
 
 
 
@@ -11,7 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const { User } = useContext(Context)
   console.log(User);
-  
+
   return (
     <nav className="backdrop-blur-md shadow-sm fixed top-0 left-0 z-50 w-full py-2">
       <div className="max-w-7xl w-[96%] sm:w-[90%] xl:w-[85%] mx-auto px-4 py-3 flex items-center justify-between">
@@ -24,8 +25,16 @@ const Navbar = () => {
         <ul className="hidden sm:flex gap-5 md:gap-8 md:text-base text-white font-medium">
           <Link to='/' className="hover:text-gray-300 cursor-pointer transition duration-500">Home</Link>
           <Link to='/blogs' className="hover:text-gray-300 cursor-pointer transition duration-500">Blogs</Link>
+          {
+            User && (
+
+              <Categories />
+            )
+          }
           <Link to='/news-letter' className="hover:text-gray-300 cursor-pointer transition duration-500">News Letter</Link>
-          <Link to='/about' className="hover:text-gray-300 cursor-pointer transition duration-500">About</Link>
+          {
+            !User && <Link to='/about' className="hover:text-gray-300 cursor-pointer transition duration-500">About</Link>
+          }
         </ul>
 
         {/* Right: Join Button */}

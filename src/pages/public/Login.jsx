@@ -14,7 +14,7 @@ const Login = () => {
     password: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { User, setUser } = useContext(Context)
+  const { User, SetUser } = useContext(Context)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,13 +22,17 @@ const Login = () => {
 
     // Simulate login process
     await new Promise(resolve => setTimeout(resolve, 1500));
-    await axiosInstance.post("/user/login").then((res) => {
+    await axiosInstance.post("/user/login", {
+      email: formData.email,
+      password: formData.password
+    }).then((res) => {
       console.log(res.data);
-      setUser(res.data)
+      SetUser(res.data)
       toast.success('Login successful')
-
+      navigate('/')
     }).catch((error) => {
       console.log(error);
+      toast.error('Invalid email or password')
     })
 
     await new Promise(resolve => setTimeout(resolve, 1500));

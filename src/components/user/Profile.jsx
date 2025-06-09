@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { FaUser } from 'react-icons/fa'
+import { Link } from 'react-router'
+import axiosInstance from '../../utils/axios'
+import Loader from '../public/loader'
+import Context from '../../context/context'
+import toast from 'react-hot-toast'
 
 const Profile = () => {
+
+    const { SetUser,setLogoutPopup } = useContext(Context)
+    const handleLogin = async () => {
+
+        await axiosInstance.post('/user/logout').then(() => {
+            SetUser(null)
+            toast.success("Successfully logged out.")
+        }).catch((error) => {
+            console.log(error.response.data);
+        })
+    }
+
     return (
         <div>
             <div className="dropdown dropdown-end">
@@ -10,13 +27,16 @@ const Profile = () => {
                         <FaUser size={20} />
                     </div>
                 </div>
-                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
+                <ul tabIndex={0} className="dropdown-content menu bg-[#003e84] rounded-box z-1 w-52 p-2 shadow-xl shadow-black">
+                    <Link to='/view-profile' className="w-full p-1 hover:bg-blue-300/10 cursor-pointer transition duration-500">View Profile</Link>
+                    <Link onClick={()=> setLogoutPopup(true)} className="w-full p-1 hover:bg-blue-300/10 cursor-pointer transition duration-500">Logout</Link>
                 </ul>
             </div>
         </div>
     )
 }
+
+
+
 
 export default Profile

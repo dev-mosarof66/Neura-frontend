@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useContext, useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router'
 import Context from './context/context'
 import axiosInstance from './utils/axios'
 const Layout = lazy(() => import('./pages/public/Layout'))
@@ -26,66 +26,72 @@ const AdminDashboardLayout = lazy(() => import('../src/pages/admin/layout'))
 const CreateBlog = lazy(() => import('../src/pages/admin/createBlog'))
 const AdminDashboard = lazy(() => import('../src/pages/admin/dashboard'))
 
-const Router = () => {
-    const { admin, setAdmin, User, SetUser } = useContext(Context)
-
-
-    const fetchUserData = async () => {
-        await axiosInstance.get('/user/get-profile').then((res) => {
-            console.log(res.data);
-            
-            SetUser(res.data.user)
-        }).catch((error) => {
-            console.log(`error in user data`);
-
-            console.log(error.response.data);
-        })
-    }
-    const fetchAdminData = async () => {
-        await axiosInstance.get('/admin/get-profile').then((res) => {
-            setAdmin(res.data)
-        }).catch((error) => {
-            console.log(error.response.data);
-        })
-    }
-
+const InnerRouter = () => {
+    const { admin, setAdmin, User, SetUser } = useContext(Context);
+    const location = useLocation();
 
     useEffect(() => {
-        fetchAdminData();
-        fetchUserData()
-    }, [])
+        const fetchUserData = async () => {
+            try {
+                const res = await axiosInstance.get('/user/get-profile');
+                SetUser(res.data.user);
+            } catch (error) {
+                console.log('error in user data', error.response?.data);
+            }
+        };
 
+        const fetchAdminData = async () => {
+            try {
+                const res = await axiosInstance.get('/admin/get-profile');
+                setAdmin(res.data);
+            } catch (error) {
+                console.log(error.response?.data);
+            }
+        };
 
+        if (location.pathname === '/admin') {
+            fetchAdminData();
+        }
 
+        fetchUserData();
+    }, [location]);
+
+    return (
+        <Suspense fallback={<Loader />}>
+            <Routes>
+                <Route path='' element={<Layout />} >
+                    <Route index element={User === null ? <Landing /> : <Home />} />
+                    <Route path='/blogs' element={<Blogs />} />
+                    <Route path='/news-letter' element={<NewsLetter />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/explore' element={<Explore />} />
+                    <Route path='/saved' element={<Saved />} />
+                    <Route path='/blogs/:id' element={<BlogDescription />} />
+                </Route>
+                <Route path='/login' element={User === null ? <Login /> : <Navigate to='/' />} />
+                <Route path='/signup' element={User === null ? <Signup /> : <Navigate to='/' />} />
+                <Route path='*' element={<Error />} />
+                <Route path='/admin' element={admin === null ? <Navigate to={'/admin/login'} /> : <AdminDashboardLayout />} >
+                    <Route index element={<AdminDashboard />} />
+                </Route>
+                <Route path='/admin/create-blog' element={<CreateBlog />} />
+                <Route path='/admin/login' element={admin === null ? <AdminLogin /> : <Navigate to='/admin' />} />
+            </Routes>
+        </Suspense>
+    );
+};
+
+const Router = () => {
     return (
         <>
             <Toaster />
             <BrowserRouter>
-                <Suspense fallback={<Loader />}>
-                    <Routes>
-                        <Route path='' element={<Layout />} >
-                            <Route index element={User === null ? <Landing /> : <Home />} />
-                            <Route path='/blogs' element={<Blogs />} />
-                            <Route path='/news-letter' element={<NewsLetter />} />
-                            <Route path='/about' element={<About />} />
-                            <Route path='/explore' element={<Explore />} />
-                            <Route path='/saved' element={<Saved />} />
-                            <Route path='/blogs/:id' element={<BlogDescription />} />
-                        </Route>
-                        <Route path='/login' element={User === null && <Login />} />
-                        <Route path='/signup' element={User === null && <Signup />} />
-                        <Route path='*' element={<Error />} />
-                        <Route path='/admin' element={admin === null ? <Navigate to={'/admin/login'} /> : <AdminDashboardLayout />} >
-                            <Route index element={<AdminDashboard />} />
-                        </Route>
-                        <Route path='/admin/create-blog' element={<CreateBlog />} />
-                        <Route path='/admin/login' element={admin === null ? <AdminLogin /> : <Navigate to='/admin' />} />
-                    </Routes>
-                </Suspense>
-
+                <InnerRouter />
             </BrowserRouter>
         </>
-    )
-}
+    );
+};
 
-export default Router
+export default Router;
+
+
