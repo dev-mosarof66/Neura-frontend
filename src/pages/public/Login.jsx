@@ -11,12 +11,15 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
+    remember: false
   });
   const [isLoading, setIsLoading] = useState(false);
   const { User, SetUser } = useContext(Context)
 
   const handleSubmit = async (e) => {
+    console.log(formData);
+    
     e.preventDefault();
     setIsLoading(true);
 
@@ -32,7 +35,7 @@ const Login = () => {
       navigate('/')
     }).catch((error) => {
       console.log(error);
-      toast.error('Invalid email or password')
+      toast.error(error.message)
     })
 
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -101,7 +104,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-500 transition-colors cursor-pointer"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -112,6 +115,8 @@ const Login = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
+                value={formData.remember}
+                onToggle={() => setFormData(!formData.remember)}
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"

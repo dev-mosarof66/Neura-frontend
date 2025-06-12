@@ -3,13 +3,17 @@ import Loader from "../public/loader"
 import Context from "../../context/context"
 import axiosInstance from "../../utils/axios"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router"
 
 export const LogoutPopup = () => {
+    const navigate = useNavigate()
     const { SetUser, setLogoutPopup } = useContext(Context)
     const handleLogin = async () => {
         await axiosInstance.post('/user/logout').then(() => {
             SetUser(null)
             toast.success("Successfully logged out.")
+            setLogoutPopup(false)
+            navigate('/login')
         }).catch((error) => {
             console.log(error.response.data);
         })

@@ -16,7 +16,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <ul tabIndex={0} className="dropdown-content menu bg-[#003e84] rounded-box z-1 w-52 p-2 shadow-md shadow-black">
-                    <Link to='/view-profile' className="w-full p-1 hover:bg-blue-300/10 cursor-pointer transition duration-500">View Profile</Link>
+                    <Link to='/profile' className="w-full p-1 hover:bg-blue-300/10 cursor-pointer transition duration-500">View Profile</Link>
                     <Link onClick={()=> setLogoutPopup(true)} className="w-full p-1 hover:bg-blue-300/10 cursor-pointer transition duration-500">Logout</Link>
                 </ul>
             </div>

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import Loader from '../../components/public/loader';
 import logo from '../../assets/logo.png'
 import { useNavigate } from 'react-router';
+import axiosInstance from '../../utils/axios'
 
 const Editor = ({ editorRef }) => {
   const navigate = useNavigate()
@@ -12,12 +13,24 @@ const Editor = ({ editorRef }) => {
   const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false)
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const content = editorRef.current.innerHTML;
     localStorage.setItem('editor-content', content);
     localStorage.setItem('editor-title', title);
     localStorage.setItem('editor-filename', fileName);
-    toast.success("data stored in database.")
+    await axiosInstance.post('/admin/create-blog', {
+      title: title,
+      content: content,
+      filename: fileName
+
+    }).then((res) => {
+      console.log(res.data);
+      toast.success("data stored in database.")
+
+    }).catch((err) => {
+      console.log(err);
+
+    })
   };
 
 

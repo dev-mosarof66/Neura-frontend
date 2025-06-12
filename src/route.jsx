@@ -20,6 +20,7 @@ const Loader = lazy(() => import('./components/public/loader'))
 //user
 const Saved = lazy(() => import('./pages/user/Saved'))
 const Home = lazy(() => import('./pages/user/Home'))
+const Profile = lazy(() => import('./pages/user/profile'))
 
 //admin
 const AdminLogin = lazy(() => import('../src/pages/admin/login'))
@@ -73,6 +74,7 @@ const InnerRouter = () => {
                 </Route>
                 <Route path='/login' element={User === null ? <Login /> : <Navigate to='/' />} />
                 <Route path='/signup' element={User === null ? <Signup /> : <Navigate to='/' />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='*' element={<Error />} />
                 <Route path='/admin' element={admin === null ? <Navigate to={'/admin/login'} /> : <AdminDashboardLayout />} >
                     <Route index element={<AdminDashboard />} />
