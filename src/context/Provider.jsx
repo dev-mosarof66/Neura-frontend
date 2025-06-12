@@ -10,13 +10,15 @@ const Provider = ({ children }) => {
     const [admin, setAdmin] = useState(null)
     const [User, SetUser] = useState(null)
     const [logoutPopup, setLogoutPopup] = useState(false)
+  const [blogs, setBlogs] = useState('')
+
 
 
     const editorRef = useRef(null);
 
     return (
         <Context.Provider
-            value={{ editorRef, blog, admin, setAdmin, setBlog, User, SetUser,logoutPopup,setLogoutPopup }}>
+            value={{ editorRef, blog, admin, setAdmin, setBlog, User, SetUser,logoutPopup,setLogoutPopup,blogs,setBlogs }}>
             {
                 children
             }

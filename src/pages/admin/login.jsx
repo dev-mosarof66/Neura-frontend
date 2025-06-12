@@ -30,7 +30,7 @@ const Login = () => {
 
         }).catch((error) => {
             console.log(`Login error : ${error}`);
-            toast.success('Login failed.')
+            toast.error('Login failed.')
 
         }).finally(() => {
             setIsLoading(false);

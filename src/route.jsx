@@ -32,6 +32,9 @@ const InnerRouter = () => {
     const { admin, setAdmin, User, SetUser } = useContext(Context);
     const location = useLocation();
 
+    console.log(admin);
+
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -45,7 +48,7 @@ const InnerRouter = () => {
         const fetchAdminData = async () => {
             try {
                 const res = await axiosInstance.get('/admin/get-profile');
-                setAdmin(res.data);
+                setAdmin(res.data.user);
             } catch (error) {
                 console.log(error.response?.data);
             }
@@ -53,9 +56,8 @@ const InnerRouter = () => {
 
         if (location.pathname === '/admin') {
             fetchAdminData();
-        }
-
-        fetchUserData();
+        } else
+            fetchUserData();
         window.scrollTo(0, 0)
     }, [location]);
 
